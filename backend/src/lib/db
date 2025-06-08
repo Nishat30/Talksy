@@ -1,0 +1,18 @@
+two data base needed
+
+_id-created by mongo db auto
+
+created at and updated at
+
+one for user
+email 
+full name
+password
+profilepics
+
+one for messages
+messages
+senderid
+recieverid
+test
+image
