@@ -13,26 +13,30 @@ const AuthImagePattern = ({ title, subtitle }) => {
             {/* Glassmorphic container */}
             <div className="relative bg-black/30 backdrop-blur-xl border border-white/40 rounded-3xl p-16 shadow-2xl">
               {/* Two person icon with glassmorphic styling */}
-              <div className="flex items-end justify-center gap-3">
+              <div className="flex items-end justify-center gap-10">
                 {/* Person 1 - Larger */}
                 <div className="relative">
                   {/* Head */}
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-gray-100 to-gray-700/80 bg-white/30 backdrop-blur-sm border border-white/30 shadow-lg mb-3 mx-auto bg-opacity-30"
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-white-200 via-grey-400 to-zinc-00 to-85% shadow-lg mb-2 mx-auto bg-opacity-30"
                   style={{ backgroundColor: '#edf5f1' }}></div>
+                  {/* <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-200 to-blue-800 shadow-lg"></div> */}
+
                   {/* Body */}
-                  <div className="w-24 h-20 rounded-t-3xl bg-white/15 bg-gradient-to-r from-gray-100 to-gray-700/80 backdrop-blur-sm border border-white/25 shadow-lg"
+                  <div className="h-20 w-24 rounded-tl-full rounded-tr-full bg-white/15 bg-gradient-to-r from-gray-100 to-gray-700/80 backdrop-blur-sm border border-white/25 shadow-lg"
                   style={{ backgroundColor: '#edf5f1' }}></div>
                 </div>
                 
                 {/* Person 2 - Smaller, overlapping */}
-                <div className="relative -ml-3">
+                <div className="relative -ml-2 bottom-10">
                   {/* Head */}
-                  <div
+                  {/* <div
                     className="w-12 h-12 rounded-full backdrop-blur-sm border bg-gradient-to-r from-blue-200 to-blue-900 border-white/30 shadow-lg mb-3 mx-auto"
                     style={{ backgroundColor: 'rgba(3, 78, 252, 0.6)' }} // Original hex with 60% opacity
-                  ></div>
+                  ></div> */}
+                  <div className="w-12 h-12 rounded-full bg-gradient-radial from-sky-200 via-blue-400 to-indigo-900 bg-[radial-gradient(at_50%_75%,#bae6fd,#60a5fa,#1e3a8a)] mb-2 mx-auto bg-opacity-30"></div>
+
                   {/* Body */}
-                  <div className="w-20 h-16 rounded-t-3xl bg-gradient-to-r from-blue-100 to-blue-800 backdrop-blur-sm border border-white/25 shadow-lg"
+                  <div className="h-16 w-20 rounded-tl-full rounded-tr-full bg-gradient-radial from-sky-200 via-blue-400 to-indigo-900 bg-[radial-gradient(at_50%_75%,#bae6fd,#60a5fa,#1e3a8a)]"
                      style={{ backgroundColor: 'rgba(3, 78, 252, 0.3)' }}></div> {/* Original hex with 40% opacity */}
                 </div>
               </div>

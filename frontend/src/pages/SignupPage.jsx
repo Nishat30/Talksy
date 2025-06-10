@@ -191,7 +191,7 @@ const SignupPage = () => {
                 to="/login" 
                 className="text-primary hover:text-primary/80 font-medium transition-colors"
               >
-                Sign in
+                Login in
               </Link>
             </p>
           </div>
