@@ -4,6 +4,7 @@ import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare, User } from "lucide-re
 import { Link } from "react-router-dom";
 import AuthImagePattern from "../components/AuthImagePattern";
 import toast from "react-hot-toast";
+import { Toaster } from 'react-hot-toast';
 
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,20 +17,44 @@ const SignupPage = () => {
   const { signup, isSigningUp } = useAuthStore();
 
   const validateForm = () => {
-    if (!formData.fullName.trim()) return toast.error("Full name is required");
-    if (!formData.email.trim()) return toast.error("Email is required");
-    if (!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("Invalid email format");
-    if (!formData.password) return toast.error("Password is required");
-    if (formData.password.length < 6) return toast.error("Password must be at least 6 characters");
+    let isValid = true;
+    const errorMessages = []; // Or an object like { fullName: "", email: "" }
 
-    return true;
-  };
+    if (!formData.fullName.trim()) {
+        errorMessages.push("Full name is required");
+        isValid = false;
+    }
+    if (!formData.email.trim()) {
+        errorMessages.push("Email is required");
+        isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) { // Use else if for dependent checks
+        errorMessages.push("Invalid email format");
+        isValid = false;
+    }
+    if (!formData.password) {
+        errorMessages.push("Password is required");
+        isValid = false;
+    } else if (formData.password.length < 6) { // Use else if here
+        errorMessages.push("Password must be at least 6 characters");
+        isValid = false;
+    }
 
+    if (errorMessages.length > 0) {
+        // You could toast each error individually, or combine them
+        errorMessages.forEach(msg => toast.error(msg));
+        // Or combine into one toast if you prefer:
+        // toast.error(errorMessages.join("\n"));
+    }
+
+    return isValid;
+};
+
+// In handleSubmit:
   const handleSubmit = (e) => {
     e.preventDefault();
-    const success = validateForm();
-    if (success === true) signup(formData);
-  };
+    const success = validateForm(); // This will now return true or false
+    if (success) signup(formData);
+};
 
   // const handleGoogleSignIn = () => {
   //   // This is a placeholder for Google Sign-In
@@ -202,6 +227,14 @@ const SignupPage = () => {
       <AuthImagePattern
         title="Join our community"
         subtitle="Connect with friends, share moments, and stay in touch with your loved ones."
+      />
+      <Toaster
+        position="top-center" // Optional: You can customize position
+        reverseOrder={false}  // Optional: Newest toasts at top or bottom
+        // You can also add more options here, like duration
+        toastOptions={{
+          duration: 3000, // For example, 3 seconds
+        }}
       />
     </div>
   );

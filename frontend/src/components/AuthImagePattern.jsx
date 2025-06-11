@@ -17,7 +17,7 @@ const AuthImagePattern = ({ title, subtitle }) => {
                 {/* Person 1 - Larger */}
                 <div className="relative">
                   {/* Head */}
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-white-200 via-grey-400 to-zinc-00 to-85% shadow-lg mb-2 mx-auto bg-opacity-30"
+                  <div className="w-16 h-16 rounded-full  bg-white/15 bg-gradient-to-r from-gray-100 to-gray-700/80 shadow-lg mb-2 mx-auto bg-opacity-30"
                   style={{ backgroundColor: '#edf5f1' }}></div>
                   {/* <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-200 to-blue-800 shadow-lg"></div> */}
 

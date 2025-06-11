@@ -3,7 +3,7 @@ import User from "../models/user.model.js"
 import { generateTokens } from "../lib/utils.js";
 import cloudinary from "../lib/cloudinary.js"
 export const signup= async(req,res)=>{ //post request because we like to send some data
-    const{fullName,email,password}=req.body
+    const{fullName,email,password}=req.body;
     try{
         //hash passwords 
         if(!fullName || !email || !password) {
@@ -43,28 +43,36 @@ export const signup= async(req,res)=>{ //post request because we like to send so
     }
 };
 
-export const login= async(req,res)=>{
-    const {email,password}= req.body
-    try{
-        const user =await User.findOne({email})
-        if(!user){
-            return res.status(400).json({messages: "invalid credentials"})
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+    console.log('Login attempt for email:', email); // ADD THIS
+    try {
+        const user = await User.findOne({ email });
+        console.log('User found:', user ? user.email : 'None'); // ADD THIS
+        if (!user) {
+            console.log('Login failed: User not found.'); // ADD THIS
+            return res.status(400).json({ messages: "invalid credentials" });
         }
-        const isPasswordCorrect=await bcrypt.compare(password,user.password)
-        if(!isPasswordCorrect){
-            return res.status(400).json({messages: "invalid credentials"})
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        console.log('Password comparison result:', isPasswordCorrect); // ADD THIS
+        if (!isPasswordCorrect) {
+            console.log('Login failed: Incorrect password.'); // ADD THIS
+            return res.status(400).json({ messages: "invalid credentials" });
         }
 
-        generateTokens(user._id,res)
+        console.log('Password correct. Generating tokens...'); // ADD THIS
+        generateTokens(user._id, res); // This should be called here
+        console.log('Tokens generated (attempted). Sending response.'); // ADD THIS
+
         res.status(200).json({
-            _id:user._id,
-            fullName:user.fullName,
+            _id: user._id,
+            fullName: user.fullName,
             email: user.email,
-            profilePic:user.profilePic
-        })
-    }catch(error){
-        console.log("error in login controller",error.message);
-        res.status(500).json({message:"internal server error"});
+            profilePic: user.profilePic
+        });
+    } catch (error) {
+        console.log("error in login controller", error.message);
+        res.status(500).json({ message: "internal server error" });
     }
 };
 
