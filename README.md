@@ -38,3 +38,36 @@ CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
 CLOUDINARY_API_KEY=your_cloudinary_api_key
 CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 NODE_ENV=development
+
+```
+---
+## 🚀 Start the App
+
+To run both the backend and frontend locally:
+
+### 1. Start the Backend Server
+```bash
+cd backend
+npm install     # Run this only once
+npm start
+```
+---
+### ▶️ Start the Frontend Development Server
+
+```bash
+cd frontend
+npm install     # Only needed once
+npm run dev
+```
+---
+## 🤝 Contributing
+
+Contributions are welcome!  
+If you'd like to improve this project, please:
+
+- Fork the repo
+- Create a new branch
+- Submit a pull request
+
+📌 **Check the [Issues](../../issues) tab** to see open tasks, bugs, or feature requests you can help with.
+make this start the app heaidng like set.env file
