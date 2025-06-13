@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body, #root { /* Apply to both body and your root div for broadest effect */
+  background-color: var(--color-base-100) !important;
+  color: var(--color-base-content) !important;
+}

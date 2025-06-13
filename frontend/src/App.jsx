@@ -30,12 +30,7 @@ const App = () => {
   return (
     <div data-theme={theme}>
       {/* ✅ Add Toaster here so it persists across route changes */}
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          duration: 3000,
-        }}
-      />
+      
 
       <Navbar />
       <Routes>
@@ -45,6 +40,12 @@ const App = () => {
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
       </Routes>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 3000,
+        }}
+      />
     </div>
   );
 };
