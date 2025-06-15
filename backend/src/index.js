@@ -4,11 +4,11 @@ import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import cookieParser from "cookie-parser";
 import {connectDB} from "./lib/db.js";
+import {app,server} from "./lib/socket.js";
 import cors from "cors";
 import path from "path";
 dotenv.config();
 
-const app=express();
 //Cords middleware
 app.use(cors({
     origin:"http://localhost:5173", //cors are use when our bakend and frontemd are run in different ports
@@ -36,7 +36,7 @@ const PORT=process.env.PORT; //process is used to read env file
 //   });
 // }
 
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     console.log(`Server is running on port: ${PORT}`);
     connectDB()
 });
