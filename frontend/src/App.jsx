@@ -8,14 +8,14 @@ import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
 import { useAuthStore } from './store/useAuthStore'; 
 import { Loader } from "lucide-react";
-import { Toaster } from "react-hot-toast"; // ✅ Import here
+import { Toaster } from "react-hot-toast"; 
 import { useThemeStore } from './store/useThemeStore';
 
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth,onlineUsers } = useAuthStore();
-  const {theme}=useThemeStore()
-
+  const {theme}=useThemeStore();
+  console.log("Current theme from store:", theme);
   console.log(onlineUsers);
   useEffect(() => {
     checkAuth();
@@ -30,7 +30,7 @@ const App = () => {
   }
 
   return (
-    <div data-theme={theme}>
+     <div data-theme={theme}>
       {/* ✅ Add Toaster here so it persists across route changes */}
       
 
