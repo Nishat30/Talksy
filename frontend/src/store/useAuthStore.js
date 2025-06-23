@@ -47,6 +47,7 @@ export const useAuthStore = create((set,get) => ({
       set({authUser:null});
       toast.success("logged out successfully");
       get.disconnectSocket();
+      useThemeStore.getState().resetTheme(); 
     } catch (error) {
       toast.error(error.response.data.message);
     }
