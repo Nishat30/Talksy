@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast"; 
 import {io} from "socket.io-client"
+import { useThemeStore } from "./useThemeStore.js";
 // import { Toaster } from 'react-hot-toast';
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
 //useAuthStore() is a react hook
@@ -53,22 +54,18 @@ export const useAuthStore = create((set,get) => ({
     }
   },
 
-  login:async(data)=>{
-    set({isLoggingIn: true});
+    login: async (data) => {
+    set({ isLoggingIn: true });
     try {
-      const res=await axiosInstance.post("/auth/login",data);
-      set({authUser:res.data});
-      toast.success("logged in successfully");
+      const res = await axiosInstance.post("/auth/login", data);
+      set({ authUser: res.data });
+      toast.success("Logged in successfully");
 
       get().connectSocket();
-      setTimeout(() => {
-        set({ authUser: res.data });
-      }, 100);
     } catch (error) {
-      console.error("Login error:", error);
-      toast.error(error?.response?.data?.message || "Login failed");
-    } finally{
-      set({isLoggingIn:false});
+      toast.error(error.response.data.message);
+    } finally {
+      set({ isLoggingIn: false });
     }
   },
 
